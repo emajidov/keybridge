@@ -6,12 +6,17 @@
 [![Latest release](https://img.shields.io/github/v/release/emajidov/keybridge)](https://github.com/emajidov/keybridge/releases/latest)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 ![macOS 13+](https://img.shields.io/badge/macOS-13%2B-black?logo=apple)
+[![Homebrew](https://img.shields.io/badge/Homebrew-emajidov%2Ftap%2Fkeybridge-FBB040?logo=homebrew)](https://github.com/emajidov/homebrew-tap)
 
 **KeyBridge** is a free, open-source macOS menu bar app for people who switch between Windows/Linux and Mac every day.
 Keep pressing **Ctrl+C / Ctrl+V / Ctrl+Z …** on your Mac and KeyBridge sends the Mac equivalent (**⌘C / ⌘V / ⌘Z …**).
 Your normal ⌘ shortcuts keep working.
 
-🌐 **Website:** https://emajidov.github.io/keybridge/ · ⬇️ **[Download the latest release](https://github.com/emajidov/keybridge/releases/latest)**
+🌐 **Website:** https://emajidov.github.io/keybridge/ · ⬇️ **[Download the latest release](https://github.com/emajidov/keybridge/releases/latest)** · 🍺 **Homebrew:**
+
+```bash
+brew install --cask emajidov/tap/keybridge
+```
 
 ## Why KeyBridge?
 - **Keep your muscle memory.** Use Ctrl shortcuts from Windows or Linux on your Mac without retraining your fingers.
@@ -43,13 +48,16 @@ Your normal ⌘ shortcuts keep working.
 | Ctrl+Backspace / Delete | ⌥⌫ / ⌥⌦ | Delete word |
 
 ## Install
-### Homebrew
+### Option 1: Homebrew (recommended)
 ```bash
 brew install --cask emajidov/tap/keybridge
 ```
-Update with `brew upgrade --cask keybridge`. Then follow steps 2–3 below.
+- Update: `brew upgrade --cask keybridge`
+- Uninstall: `brew uninstall --cask keybridge` (add `--zap` to also remove settings)
 
-### Download
+Then do steps 2 and 3 below the first time you open the app.
+
+### Option 2: Download
 1. Download **`KeyBridge.dmg`** from the [latest release](https://github.com/emajidov/keybridge/releases/latest), open it and drag **KeyBridge** into the **Applications** folder. (A `KeyBridge.zip` is also available if you prefer.)
 2. The app is not notarized by Apple, so macOS blocks it the first time you open it. Open **System Settings → Privacy & Security**, scroll down and click **Open Anyway**. On macOS 14 and earlier you can also **right-click → Open**. Or run `xattr -dr com.apple.quarantine /Applications/KeyBridge.app` in Terminal.
 3. Grant **Accessibility** access when asked: System Settings → Privacy & Security → Accessibility → enable KeyBridge.

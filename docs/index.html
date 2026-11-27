@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KeyBridge — Use Windows &amp; Linux Ctrl Shortcuts on Mac (Free, Open Source)</title>
 <meta name="description" content="KeyBridge is a free, open-source macOS menu bar app that lets you use Windows and Linux keyboard shortcuts on a Mac. Ctrl+C, Ctrl+V, Ctrl+Z, Home/End and Ctrl+arrow keys just work.">
-<meta name="keywords" content="windows shortcuts on mac, ctrl c ctrl v mac, use ctrl instead of cmd mac, remap ctrl to command, mac keyboard remapper, home end keys mac, linux shortcuts mac, keybridge">
+<meta name="keywords" content="keybridge homebrew, brew install keybridge, windows shortcuts on mac, ctrl c ctrl v mac, use ctrl instead of cmd mac, remap ctrl to command, mac keyboard remapper, home end keys mac, linux shortcuts mac, keybridge">
 <meta name="author" content="Elgun Majidov">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://emajidov.github.io/keybridge/">
@@ -56,6 +56,8 @@
       "acceptedAnswer": { "@type": "Answer", "text": "Parallels Desktop, VMware Fusion, UTM and Windows App / Microsoft Remote Desktop are excluded by default, so the guest system receives the real keys." } },
     { "@type": "Question", "name": "How do I make Home and End keys work like Windows on a Mac?",
       "acceptedAnswer": { "@type": "Answer", "text": "KeyBridge maps Home and End to the start and end of the line, and Ctrl+Home / Ctrl+End to the start and end of the document. Hold Shift to select text." } },
+    { "@type": "Question", "name": "Can I install KeyBridge with Homebrew?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Run brew install --cask emajidov/tap/keybridge in Terminal. Update it with brew upgrade --cask keybridge." } },
     { "@type": "Question", "name": "Is KeyBridge free and private?",
       "acceptedAnswer": { "@type": "Answer", "text": "Yes. KeyBridge is free and open source under the Apache 2.0 license. It works offline, collects no data and makes no network connections." } }
   ]
@@ -75,6 +77,9 @@
   .primary { background: var(--accent); color:#fff; }
   .secondary { border:1px solid var(--border); color: var(--fg); }
   .small { font-size: .9rem; color: var(--muted); }
+  .brew { display:inline-flex; align-items:center; gap:10px; margin: 14px 0 4px; padding: 10px 10px 10px 16px; background: var(--card); border:1px solid var(--border); border-radius:10px; max-width:100%; }
+  .brew code { background:none; padding:0; font-size:.95rem; overflow-x:auto; white-space:nowrap; }
+  .brew button { font: inherit; font-size:.85rem; cursor:pointer; border:1px solid var(--border); background: var(--bg); color: var(--fg); border-radius:7px; padding: 4px 10px; }
   .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap:16px; }
   .card { background: var(--card); border:1px solid var(--border); border-radius:12px; padding: 18px 20px; }
   .card h3 { margin: 0 0 6px; font-size:1.05rem; }
@@ -82,6 +87,8 @@
   table { width:100%; border-collapse: collapse; }
   th, td { text-align:left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
   kbd { font: .9em ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--card); border:1px solid var(--border); border-bottom-width:2px; border-radius:6px; padding: 1px 6px; }
+  pre { background: var(--card); border:1px solid var(--border); border-radius:10px; padding: 12px 16px; overflow-x:auto; }
+  pre code { padding:0; background:none; }
   code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--card); padding: 2px 6px; border-radius: 6px; }
   details { border-bottom: 1px solid var(--border); padding: 12px 0; }
   summary { cursor:pointer; font-weight:600; }
@@ -97,6 +104,7 @@
     <p class="lead"><strong>KeyBridge</strong> is a free, open-source macOS menu bar app. Keep pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>, <kbd>Ctrl</kbd>+<kbd>V</kbd>, <kbd>Ctrl</kbd>+<kbd>Z</kbd> and KeyBridge sends <kbd>⌘C</kbd>, <kbd>⌘V</kbd>, <kbd>⌘Z</kbd>. Your ⌘ shortcuts keep working.</p>
     <a class="btn primary" href="https://github.com/emajidov/keybridge/releases/latest/download/KeyBridge.dmg">Download for macOS</a>
     <a class="btn secondary" href="https://github.com/emajidov/keybridge">View on GitHub</a>
+    <div><div class="brew" aria-label="Install with Homebrew"><span aria-hidden="true">🍺</span><code id="brew-cmd">brew install --cask emajidov/tap/keybridge</code><button type="button" id="copy-brew">Copy</button></div></div>
     <p class="small">macOS 13 Ventura or later · Apple silicon &amp; Intel · Apache 2.0</p>
   </header>
 
@@ -132,7 +140,11 @@
 
   <section aria-labelledby="install">
     <h2 id="install">Install</h2>
-    <p>With <a href="https://brew.sh">Homebrew</a>: <code>brew install --cask emajidov/tap/keybridge</code>, then follow steps 2 and 3. Or install manually:</p>
+    <h3>Option 1: Homebrew (recommended)</h3>
+    <p>If you have <a href="https://brew.sh">Homebrew</a>, run this in Terminal:</p>
+    <pre><code>brew install --cask emajidov/tap/keybridge</code></pre>
+    <p>Update later with <code>brew upgrade --cask keybridge</code>. Then follow steps 2 and 3 below.</p>
+    <h3>Option 2: Download</h3>
     <ol>
       <li><a href="https://github.com/emajidov/keybridge/releases/latest/download/KeyBridge.dmg">Download <code>KeyBridge.dmg</code></a>, open it and drag <strong>KeyBridge</strong> into <strong>Applications</strong>.</li>
       <li>The app isn't notarized by Apple, so macOS blocks the first launch. Open System Settings → Privacy &amp; Security and click <strong>Open Anyway</strong>. On macOS 14 and earlier you can also right-click the app and choose <strong>Open</strong>.</li>
@@ -147,11 +159,19 @@
     <details><summary>Does KeyBridge work with virtual machines and remote desktops?</summary><p>Parallels Desktop, VMware Fusion, UTM and Windows App / Microsoft Remote Desktop are excluded by default, so the guest system receives the real keys.</p></details>
     <details><summary>How do I make Home and End keys work like Windows on a Mac?</summary><p>KeyBridge maps Home and End to the start and end of the line, and Ctrl+Home / Ctrl+End to the start and end of the document. Hold Shift to select text.</p></details>
     <details><summary>Ctrl+← / → doesn't work. Why?</summary><p>macOS uses these keys to switch Spaces. Turn them off in System Settings → Keyboard → Keyboard Shortcuts → Mission Control.</p></details>
+    <details><summary>Can I install KeyBridge with Homebrew?</summary><p>Yes. Run <code>brew install --cask emajidov/tap/keybridge</code> in Terminal. Update it with <code>brew upgrade --cask keybridge</code>.</p></details>
     <details><summary>Is KeyBridge free and private?</summary><p>Yes. KeyBridge is free and open source under the Apache 2.0 license. It works offline, collects no data and makes no network connections.</p></details>
   </section>
 </main>
 <footer>
   KeyBridge · © 2026 <a href="https://github.com/emajidov">Elgun Majidov</a> · <a href="https://github.com/emajidov/keybridge/blob/main/LICENSE">Apache License 2.0</a> · <a href="https://github.com/emajidov/keybridge/issues">Report an issue</a>
 </footer>
+<script>
+  document.getElementById('copy-brew').addEventListener('click', async (e) => {
+    try { await navigator.clipboard.writeText(document.getElementById('brew-cmd').textContent); e.target.textContent = 'Copied!'; }
+    catch { e.target.textContent = 'Select & copy'; }
+    setTimeout(() => { e.target.textContent = 'Copy'; }, 1500);
+  });
+</script>
 </body>
 </html>
