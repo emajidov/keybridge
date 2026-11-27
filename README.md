@@ -43,6 +43,13 @@ Your normal ⌘ shortcuts keep working.
 | Ctrl+Backspace / Delete | ⌥⌫ / ⌥⌦ | Delete word |
 
 ## Install
+### Homebrew
+```bash
+brew install --cask emajidov/tap/keybridge
+```
+Update with `brew upgrade --cask keybridge`. Then follow steps 2–3 below.
+
+### Download
 1. Download **`KeyBridge.dmg`** from the [latest release](https://github.com/emajidov/keybridge/releases/latest), open it and drag **KeyBridge** into the **Applications** folder. (A `KeyBridge.zip` is also available if you prefer.)
 2. The app is not notarized by Apple, so macOS blocks it the first time you open it. Open **System Settings → Privacy & Security**, scroll down and click **Open Anyway**. On macOS 14 and earlier you can also **right-click → Open**. Or run `xattr -dr com.apple.quarantine /Applications/KeyBridge.app` in Terminal.
 3. Grant **Accessibility** access when asked: System Settings → Privacy & Security → Accessibility → enable KeyBridge.

@@ -3,6 +3,8 @@
 All notable changes to this project are documented here. This project follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
+### Added
+- Install with Homebrew: `brew install --cask emajidov/tap/keybridge`.
 
 ## [1.1.0]
 ### Added

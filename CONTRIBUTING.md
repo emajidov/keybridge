@@ -35,4 +35,6 @@ Project layout:
 
 The release workflow builds `KeyBridge.dmg` and `KeyBridge.zip` and uses that version's CHANGELOG section as the release notes. It fails if the section is missing.
 
+The Homebrew cask in [emajidov/homebrew-tap](https://github.com/emajidov/homebrew-tap) picks up the new release automatically within 6 hours. To update it right away, run its "Update KeyBridge cask" workflow.
+
 By submitting a contribution, you agree that it is licensed under the [Apache License 2.0](LICENSE).
