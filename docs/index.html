@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>KeyBridge — Use Windows &amp; Linux Ctrl Shortcuts on Mac (Free, Open Source)</title>
 <meta name="description" content="KeyBridge is a free, open-source macOS menu bar app that lets you use Windows and Linux keyboard shortcuts on a Mac. Ctrl+C, Ctrl+V, Ctrl+Z, Home/End and Ctrl+arrow keys just work.">
-<meta name="keywords" content="keybridge homebrew, brew install keybridge, windows shortcuts on mac, ctrl c ctrl v mac, use ctrl instead of cmd mac, remap ctrl to command, mac keyboard remapper, home end keys mac, linux shortcuts mac, keybridge">
+<meta name="keywords" content="apple could not verify keybridge is free of malware, keybridge homebrew, brew install keybridge, windows shortcuts on mac, ctrl c ctrl v mac, use ctrl instead of cmd mac, remap ctrl to command, mac keyboard remapper, home end keys mac, linux shortcuts mac, keybridge">
 <meta name="author" content="Elgun Majidov">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://emajidov.github.io/keybridge/">
@@ -58,6 +58,8 @@
       "acceptedAnswer": { "@type": "Answer", "text": "KeyBridge maps Home and End to the start and end of the line, and Ctrl+Home / Ctrl+End to the start and end of the document. Hold Shift to select text." } },
     { "@type": "Question", "name": "Can I install KeyBridge with Homebrew?",
       "acceptedAnswer": { "@type": "Answer", "text": "Yes. Run brew install --cask emajidov/tap/keybridge in Terminal. Update it with brew upgrade --cask keybridge." } },
+    { "@type": "Question", "name": "macOS says “Apple could not verify KeyBridge is free of malware”. What do I do?",
+      "acceptedAnswer": { "@type": "Answer", "text": "KeyBridge is free and open source and isn't notarized by Apple, so macOS shows this warning for the downloaded app. Install with Homebrew (brew install --cask emajidov/tap/keybridge) to avoid it, or open System Settings → Privacy & Security and click Open Anyway, or run xattr -dr com.apple.quarantine /Applications/KeyBridge.app in Terminal. You only need to do this once." } },
     { "@type": "Question", "name": "Is KeyBridge free and private?",
       "acceptedAnswer": { "@type": "Answer", "text": "Yes. KeyBridge is free and open source under the Apache 2.0 license. It works offline, collects no data and makes no network connections." } }
   ]
@@ -143,11 +145,11 @@
     <h3>Option 1: Homebrew (recommended)</h3>
     <p>If you have <a href="https://brew.sh">Homebrew</a>, run this in Terminal:</p>
     <pre><code>brew install --cask emajidov/tap/keybridge</code></pre>
-    <p>Update later with <code>brew upgrade --cask keybridge</code>. Then follow steps 2 and 3 below.</p>
+    <p>Update later with <code>brew upgrade --cask keybridge</code>. Homebrew installs skip Apple's malware warning; just allow Accessibility (step 3).</p>
     <h3>Option 2: Download</h3>
     <ol>
       <li><a href="https://github.com/emajidov/keybridge/releases/latest/download/KeyBridge.dmg">Download <code>KeyBridge.dmg</code></a>, open it and drag <strong>KeyBridge</strong> into <strong>Applications</strong>.</li>
-      <li>The app isn't notarized by Apple, so macOS blocks the first launch. Open System Settings → Privacy &amp; Security and click <strong>Open Anyway</strong>. On macOS 14 and earlier you can also right-click the app and choose <strong>Open</strong>.</li>
+      <li>The first time you open it, macOS says <em>“Apple could not verify KeyBridge is free of malware”</em>. Open System Settings → Privacy &amp; Security and click <strong>Open Anyway</strong> (<a href="#malware-warning">more options</a>).</li>
       <li>Allow <strong>Accessibility</strong> access in System Settings → Privacy &amp; Security → Accessibility.</li>
     </ol>
   </section>
@@ -160,6 +162,7 @@
     <details><summary>How do I make Home and End keys work like Windows on a Mac?</summary><p>KeyBridge maps Home and End to the start and end of the line, and Ctrl+Home / Ctrl+End to the start and end of the document. Hold Shift to select text.</p></details>
     <details><summary>Ctrl+← / → doesn't work. Why?</summary><p>macOS uses these keys to switch Spaces. Turn them off in System Settings → Keyboard → Keyboard Shortcuts → Mission Control.</p></details>
     <details><summary>Can I install KeyBridge with Homebrew?</summary><p>Yes. Run <code>brew install --cask emajidov/tap/keybridge</code> in Terminal. Update it with <code>brew upgrade --cask keybridge</code>.</p></details>
+    <details id="malware-warning"><summary>macOS says “Apple could not verify KeyBridge is free of malware”. What do I do?</summary><p>KeyBridge is free and open source and isn't notarized by Apple (that requires a paid developer account), so macOS shows this warning for the downloaded app. Pick one fix:</p><ul><li>Install with Homebrew: <code>brew install --cask emajidov/tap/keybridge</code>. The warning won't appear.</li><li>Open <strong>System Settings → Privacy &amp; Security</strong>, scroll down and click <strong>Open Anyway</strong>.</li><li>In Terminal, run <code>xattr -dr com.apple.quarantine /Applications/KeyBridge.app</code>, then open the app again.</li></ul><p>You only need to do this once per install.</p></details>
     <details><summary>Is KeyBridge free and private?</summary><p>Yes. KeyBridge is free and open source under the Apache 2.0 license. It works offline, collects no data and makes no network connections.</p></details>
   </section>
 </main>

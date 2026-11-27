@@ -55,11 +55,11 @@ brew install --cask emajidov/tap/keybridge
 - Update: `brew upgrade --cask keybridge`
 - Uninstall: `brew uninstall --cask keybridge` (add `--zap` to also remove settings)
 
-Then do steps 2 and 3 below the first time you open the app.
+The Homebrew install clears macOS's "downloaded from the internet" flag, so you won't see Apple's malware warning. You only need step 3 below (Accessibility).
 
 ### Option 2: Download
 1. Download **`KeyBridge.dmg`** from the [latest release](https://github.com/emajidov/keybridge/releases/latest), open it and drag **KeyBridge** into the **Applications** folder. (A `KeyBridge.zip` is also available if you prefer.)
-2. The app is not notarized by Apple, so macOS blocks it the first time you open it. Open **System Settings → Privacy & Security**, scroll down and click **Open Anyway**. On macOS 14 and earlier you can also **right-click → Open**. Or run `xattr -dr com.apple.quarantine /Applications/KeyBridge.app` in Terminal.
+2. The first time you open it, macOS shows *"Apple could not verify “KeyBridge” is free of malware…"*. This is expected; see [Troubleshooting](#apple-could-not-verify-keybridge-is-free-of-malware) for how to open it.
 3. Grant **Accessibility** access when asked: System Settings → Privacy & Security → Accessibility → enable KeyBridge.
 
 ## Build from source
@@ -80,6 +80,30 @@ The app is ad-hoc signed. After you rebuild it, you may need to remove KeyBridge
 ```bash
 swift test   # with Command Line Tools only, prefix with SDKROOT=<SDK chosen by build.sh>
 ```
+
+## Troubleshooting
+
+### "Apple could not verify “KeyBridge” is free of malware"
+When you open KeyBridge for the first time, macOS may show:
+
+> Apple could not verify “KeyBridge” is free of malware that may harm your Mac or compromise your privacy.
+
+**Why:** KeyBridge is open source and free, so it isn't signed with a paid Apple Developer ID or notarized by Apple. macOS blocks any downloaded app that Apple hasn't notarized. You can read and build all of the source code in this repository.
+
+**Fix (pick one):**
+- **Install with Homebrew:** `brew install --cask emajidov/tap/keybridge`. The cask clears the quarantine flag, so the warning doesn't appear.
+- **Open Anyway:** click **Done** on the warning, open **System Settings → Privacy & Security**, scroll down to the message about KeyBridge and click **Open Anyway**, then confirm. On macOS 14 and earlier you can also right-click the app and choose **Open**.
+- **Terminal:** remove the quarantine flag, then open the app again:
+  ```bash
+  xattr -dr com.apple.quarantine /Applications/KeyBridge.app
+  ```
+
+You only need to do this once per install.
+
+### Shortcuts don't work after installing or updating
+- Make sure KeyBridge is on in **System Settings → Privacy & Security → Accessibility**.
+- If KeyBridge is listed more than once, or it's on but shortcuts still don't work, remove every KeyBridge entry with **–**, then open KeyBridge again and grant access once more. You can also reset the permission in Terminal: `tccutil reset Accessibility io.github.keybridge.KeyBridge`.
+- Keep only one copy of the app (for example, the one in `/Applications`). Each copy gets its own Accessibility entry.
 
 ## FAQ
 **How do I use Ctrl+C and Ctrl+V on a Mac?** Install KeyBridge. Ctrl+C and Ctrl+V will then copy and paste like they do on Windows.

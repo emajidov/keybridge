@@ -4,6 +4,8 @@ about: A shortcut doesn't work or the app misbehaves
 labels: bug
 ---
 
+<!-- Seeing "Apple could not verify “KeyBridge” is free of malware"? See https://github.com/emajidov/keybridge#troubleshooting -->
+
 **What happened?**
 
 **What did you expect?**

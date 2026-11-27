@@ -4,6 +4,7 @@ All notable changes to this project are documented here. This project follows [S
 
 ## [Unreleased]
 ### Added
+- Troubleshooting docs for the "Apple could not verify KeyBridge is free of malware" warning and Accessibility problems. The Homebrew cask now clears the quarantine flag, so Homebrew installs open without the warning.
 - Install with Homebrew: `brew install --cask emajidov/tap/keybridge`.
 
 ## [1.1.0]
