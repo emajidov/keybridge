@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KeyBridge — Use Windows &amp; Linux Ctrl Shortcuts on Mac (Free, Open Source)</title>
+<meta name="description" content="KeyBridge is a free, open-source macOS menu bar app that lets you use Windows and Linux keyboard shortcuts on a Mac. Ctrl+C, Ctrl+V, Ctrl+Z, Home/End and Ctrl+arrow keys just work.">
+<meta name="keywords" content="windows shortcuts on mac, ctrl c ctrl v mac, use ctrl instead of cmd mac, remap ctrl to command, mac keyboard remapper, home end keys mac, linux shortcuts mac, keybridge">
+<meta name="author" content="Elgun Majidov">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://emajidov.github.io/keybridge/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1f6feb">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KeyBridge">
+<meta property="og:title" content="KeyBridge — Windows &amp; Linux shortcuts on your Mac">
+<meta property="og:description" content="Keep pressing Ctrl+C / Ctrl+V / Ctrl+Z on your Mac. KeyBridge sends ⌘C / ⌘V / ⌘Z. Free and open source.">
+<meta property="og:url" content="https://emajidov.github.io/keybridge/">
+<meta property="og:image" content="https://emajidov.github.io/keybridge/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="KeyBridge — Windows &amp; Linux shortcuts on your Mac">
+<meta name="twitter:description" content="Keep pressing Ctrl+C / Ctrl+V / Ctrl+Z on your Mac. KeyBridge sends ⌘C / ⌘V / ⌘Z. Free and open source.">
+<meta name="twitter:image" content="https://emajidov.github.io/keybridge/og-image.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "KeyBridge",
+  "description": "Free, open-source macOS menu bar app that remaps Windows and Linux Ctrl keyboard shortcuts to their Mac equivalents.",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "macOS 13 or later",
+  "url": "https://emajidov.github.io/keybridge/",
+  "downloadUrl": "https://github.com/emajidov/keybridge/releases/latest",
+  "softwareVersion": "1.0.0",
+  "license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "image": "https://emajidov.github.io/keybridge/og-image.png",
+  "author": { "@type": "Person", "name": "Elgun Majidov", "url": "https://github.com/emajidov" },
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How do I use Ctrl+C and Ctrl+V on a Mac?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Install KeyBridge and grant it Accessibility access. Ctrl+C, Ctrl+V and other Windows shortcuts will then copy, paste and so on, just like on Windows. Your ⌘ shortcuts keep working too." } },
+    { "@type": "Question", "name": "Will Ctrl+C still stop commands in Terminal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Terminal, iTerm2, Warp, Ghostty, kitty and Alacritty are excluded by default, so Ctrl+C still interrupts running commands." } },
+    { "@type": "Question", "name": "Does KeyBridge work with virtual machines and remote desktops?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Parallels Desktop, VMware Fusion, UTM and Windows App / Microsoft Remote Desktop are excluded by default, so the guest system receives the real keys." } },
+    { "@type": "Question", "name": "How do I make Home and End keys work like Windows on a Mac?",
+      "acceptedAnswer": { "@type": "Answer", "text": "KeyBridge maps Home and End to the start and end of the line, and Ctrl+Home / Ctrl+End to the start and end of the document. Hold Shift to select text." } },
+    { "@type": "Question", "name": "Is KeyBridge free and private?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. KeyBridge is free and open source under the Apache 2.0 license. It works offline, collects no data and makes no network connections." } }
+  ]
+}
+</script>
+<style>
+  :root { --fg:#1f2328; --muted:#59636e; --bg:#fff; --card:#f6f8fa; --accent:#1f6feb; --border:#d1d9e0; }
+  @media (prefers-color-scheme: dark) { :root { --fg:#e6edf3; --muted:#9198a1; --bg:#0d1117; --card:#151b23; --border:#3d444d; --accent:#4493f8; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font:17px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color:var(--fg); background:var(--bg); }
+  main { max-width: 880px; margin: 0 auto; padding: 0 20px 60px; }
+  header { text-align:center; padding: 72px 0 40px; }
+  h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); margin: 0 0 12px; line-height:1.15; }
+  h2 { margin-top: 56px; }
+  .lead { font-size: 1.25rem; color: var(--muted); max-width: 640px; margin: 0 auto 28px; }
+  .btn { display:inline-block; padding: 12px 24px; border-radius: 10px; font-weight:600; text-decoration:none; margin: 6px; }
+  .primary { background: var(--accent); color:#fff; }
+  .secondary { border:1px solid var(--border); color: var(--fg); }
+  .small { font-size: .9rem; color: var(--muted); }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(190px,1fr)); gap:16px; }
+  .card { background: var(--card); border:1px solid var(--border); border-radius:12px; padding: 18px 20px; }
+  .card h3 { margin: 0 0 6px; font-size:1.05rem; }
+  .card p { margin:0; color: var(--muted); }
+  table { width:100%; border-collapse: collapse; }
+  th, td { text-align:left; padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  kbd { font: .9em ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--card); border:1px solid var(--border); border-bottom-width:2px; border-radius:6px; padding: 1px 6px; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--card); padding: 2px 6px; border-radius: 6px; }
+  details { border-bottom: 1px solid var(--border); padding: 12px 0; }
+  summary { cursor:pointer; font-weight:600; }
+  a { color: var(--accent); }
+  footer { text-align:center; color: var(--muted); font-size:.9rem; padding: 32px 20px; border-top:1px solid var(--border); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Use Windows &amp; Linux shortcuts on your Mac</h1>
+    <p class="lead"><strong>KeyBridge</strong> is a free, open-source macOS menu bar app. Keep pressing <kbd>Ctrl</kbd>+<kbd>C</kbd>, <kbd>Ctrl</kbd>+<kbd>V</kbd>, <kbd>Ctrl</kbd>+<kbd>Z</kbd> and KeyBridge sends <kbd>⌘C</kbd>, <kbd>⌘V</kbd>, <kbd>⌘Z</kbd>. Your ⌘ shortcuts keep working.</p>
+    <a class="btn primary" href="https://github.com/emajidov/keybridge/releases/latest">Download for macOS</a>
+    <a class="btn secondary" href="https://github.com/emajidov/keybridge">View on GitHub</a>
+    <p class="small">macOS 13 Ventura or later · Apple silicon &amp; Intel · Apache 2.0</p>
+  </header>
+
+  <section aria-labelledby="why">
+    <h2 id="why">Why KeyBridge?</h2>
+    <div class="grid">
+      <div class="card"><h3>Keep your muscle memory</h3><p>Switch between a Windows or Linux PC and a Mac every day without retraining your fingers.</p></div>
+      <div class="card"><h3>Doesn't break your Mac</h3><p>It only adds shortcuts. ⌘ still works, and terminals still get a real Ctrl+C.</p></div>
+      <div class="card"><h3>Private &amp; offline</h3><p>No account, no analytics, no network connections. Your keystrokes stay on your Mac.</p></div>
+      <div class="card"><h3>Fully customizable</h3><p>Record, edit, disable or reorder any shortcut. Exclude any app with one click.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="shortcuts">
+    <h2 id="shortcuts">Default shortcuts</h2>
+    <table>
+      <thead><tr><th>Windows / Linux</th><th>Mac</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Ctrl+C / X / V</td><td>⌘C / X / V</td><td>Copy / Cut / Paste</td></tr>
+        <tr><td>Ctrl+A</td><td>⌘A</td><td>Select all</td></tr>
+        <tr><td>Ctrl+Z, Ctrl+Y</td><td>⌘Z, ⌘⇧Z</td><td>Undo / Redo</td></tr>
+        <tr><td>Ctrl+S, F, N, O, P</td><td>⌘S, F, N, O, P</td><td>Save, Find, New, Open, Print</td></tr>
+        <tr><td>Ctrl+T, W, R, L</td><td>⌘T, W, R, L</td><td>New tab, Close, Reload, Address bar</td></tr>
+        <tr><td>Ctrl+B / I / U</td><td>⌘B / I / U</td><td>Bold / Italic / Underline</td></tr>
+        <tr><td>Ctrl+← / →</td><td>⌥← / →</td><td>Jump word</td></tr>
+        <tr><td>Home / End</td><td>⌘← / →</td><td>Line start / end</td></tr>
+        <tr><td>Ctrl+Home / End</td><td>⌘↑ / ↓</td><td>Document start / end</td></tr>
+        <tr><td>Ctrl+Backspace / Delete</td><td>⌥⌫ / ⌥⌦</td><td>Delete word</td></tr>
+      </tbody>
+    </table>
+    <p class="small">Hold Shift with navigation shortcuts to select text, just like on Windows.</p>
+  </section>
+
+  <section aria-labelledby="install">
+    <h2 id="install">Install</h2>
+    <ol>
+      <li>Download <code>KeyBridge.zip</code> from the <a href="https://github.com/emajidov/keybridge/releases/latest">latest release</a>, unzip it and move <code>KeyBridge.app</code> to <code>Applications</code>.</li>
+      <li>The first time you open it, right-click the app and choose <strong>Open</strong>. The app isn't notarized by Apple.</li>
+      <li>Allow <strong>Accessibility</strong> access in System Settings → Privacy &amp; Security → Accessibility.</li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="faq">
+    <h2 id="faq">FAQ</h2>
+    <details><summary>How do I use Ctrl+C and Ctrl+V on a Mac?</summary><p>Install KeyBridge and grant it Accessibility access. Ctrl+C, Ctrl+V and other Windows shortcuts will then copy, paste and so on, just like on Windows. Your ⌘ shortcuts keep working too.</p></details>
+    <details><summary>Will Ctrl+C still stop commands in Terminal?</summary><p>Yes. Terminal, iTerm2, Warp, Ghostty, kitty and Alacritty are excluded by default, so Ctrl+C still interrupts running commands.</p></details>
+    <details><summary>Does KeyBridge work with virtual machines and remote desktops?</summary><p>Parallels Desktop, VMware Fusion, UTM and Windows App / Microsoft Remote Desktop are excluded by default, so the guest system receives the real keys.</p></details>
+    <details><summary>How do I make Home and End keys work like Windows on a Mac?</summary><p>KeyBridge maps Home and End to the start and end of the line, and Ctrl+Home / Ctrl+End to the start and end of the document. Hold Shift to select text.</p></details>
+    <details><summary>Ctrl+← / → doesn't work. Why?</summary><p>macOS uses these keys to switch Spaces. Turn them off in System Settings → Keyboard → Keyboard Shortcuts → Mission Control.</p></details>
+    <details><summary>Is KeyBridge free and private?</summary><p>Yes. KeyBridge is free and open source under the Apache 2.0 license. It works offline, collects no data and makes no network connections.</p></details>
+  </section>
+</main>
+<footer>
+  KeyBridge · © 2026 <a href="https://github.com/emajidov">Elgun Majidov</a> · <a href="https://github.com/emajidov/keybridge/blob/main/LICENSE">Apache License 2.0</a> · <a href="https://github.com/emajidov/keybridge/issues">Report an issue</a>
+</footer>
+</body>
+</html>

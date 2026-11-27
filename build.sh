@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builds KeyBridge.app into ./build (ad-hoc signed).
+# Builds a universal KeyBridge.app into ./build (ad-hoc signed).
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -17,11 +17,15 @@ if [[ -z "${SDKROOT:-}" && "$(xcode-select -p)" == *CommandLineTools* ]]; then
     done
 fi
 
-swift build -c release
+# Universal binary so the app runs on both Apple silicon and Intel Macs.
+for arch in arm64 x86_64; do
+    swift build -c release --triple "$arch-apple-macosx13.0" --scratch-path ".build/$arch"
+done
 APP=build/KeyBridge.app
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
-cp .build/release/KeyBridge "$APP/Contents/MacOS/KeyBridge"
+lipo -create -output "$APP/Contents/MacOS/KeyBridge" \
+    .build/arm64/release/KeyBridge .build/x86_64/release/KeyBridge
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 codesign --force --sign - "$APP"
 echo "Built $APP"
