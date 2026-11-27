@@ -40,8 +40,8 @@ Your normal ⌘ shortcuts keep working.
 | Ctrl+Backspace / Delete | ⌥⌫ / ⌥⌦ | Delete word |
 
 ## Install
-1. Download `KeyBridge.zip` from the [latest release](https://github.com/emajidov/keybridge/releases/latest), unzip it and move `KeyBridge.app` to `/Applications`.
-2. The app is not notarized by Apple, so the first time you open it, **right-click → Open** (or run `xattr -dr com.apple.quarantine /Applications/KeyBridge.app`).
+1. Download **`KeyBridge.dmg`** from the [latest release](https://github.com/emajidov/keybridge/releases/latest), open it and drag **KeyBridge** into the **Applications** folder. (A `KeyBridge.zip` is also available if you prefer.)
+2. The app is not notarized by Apple, so macOS blocks it the first time you open it. Open **System Settings → Privacy & Security**, scroll down and click **Open Anyway**. On macOS 14 and earlier you can also **right-click → Open**. Or run `xattr -dr com.apple.quarantine /Applications/KeyBridge.app` in Terminal.
 3. Grant **Accessibility** access when asked: System Settings → Privacy & Security → Accessibility → enable KeyBridge.
 
 ## Build from source
@@ -53,6 +53,8 @@ cd keybridge
 ./build.sh
 open build/KeyBridge.app
 ```
+
+`build.sh` creates `build/KeyBridge.app`, the installer `build/KeyBridge.dmg` and `build/KeyBridge.zip`. Pushing a `v*` tag (e.g. `git tag v1.0.1 && git push origin v1.0.1`) makes GitHub Actions build them and attach them to a GitHub release.
 
 The app is ad-hoc signed. After you rebuild it, you may need to remove KeyBridge from the Accessibility list and add it again.
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Builds a universal KeyBridge.app into ./build (ad-hoc signed).
+# Builds a universal KeyBridge.app (ad-hoc signed) plus KeyBridge.dmg and KeyBridge.zip into ./build.
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -29,3 +29,17 @@ lipo -create -output "$APP/Contents/MacOS/KeyBridge" \
 cp Resources/Info.plist "$APP/Contents/Info.plist"
 codesign --force --sign - "$APP"
 echo "Built $APP"
+
+# Downloadable packages: a drag-to-Applications disk image and a zip.
+DMG=build/KeyBridge.dmg
+ZIP=build/KeyBridge.zip
+STAGING=build/dmg
+rm -rf "$STAGING" "$DMG" "$ZIP"
+mkdir -p "$STAGING"
+cp -R "$APP" "$STAGING/"
+ln -s /Applications "$STAGING/Applications"
+hdiutil create -quiet -volname KeyBridge -srcfolder "$STAGING" -fs HFS+ -format UDZO -ov "$DMG"
+rm -rf "$STAGING"
+ditto -c -k --keepParent "$APP" "$ZIP"
+echo "Built $DMG"
+echo "Built $ZIP"

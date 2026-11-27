@@ -10,7 +10,7 @@ Thanks for helping! Bug reports, shortcut ideas and pull requests are welcome.
 Requires macOS 13+ and Xcode or the Command Line Tools.
 
 ```bash
-./build.sh               # builds build/KeyBridge.app
+./build.sh               # builds build/KeyBridge.app, KeyBridge.dmg and KeyBridge.zip
 open build/KeyBridge.app
 swift test               # runs unit tests
 ```
