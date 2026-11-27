@@ -20,6 +20,7 @@ Project layout:
 - `Sources/KeyBridge/Models.swift` — rules, key codes, default shortcuts and excluded apps
 - `Sources/KeyBridge/AppState.swift` — settings persistence and app state
 - `Sources/KeyBridge/Views.swift` — SwiftUI menu bar and settings UI
+- `scripts/make-icon.swift` — draws the app icon; run `swift scripts/make-icon.swift` to regenerate `Resources/AppIcon.icns`
 - `docs/` — the project website (GitHub Pages)
 
 ## Pull requests

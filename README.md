@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/icon.png" alt="KeyBridge icon" width="128" height="128"></p>
+
 # KeyBridge — Windows & Linux keyboard shortcuts on Mac
 
 [![CI](https://github.com/emajidov/keybridge/actions/workflows/ci.yml/badge.svg)](https://github.com/emajidov/keybridge/actions/workflows/ci.yml)

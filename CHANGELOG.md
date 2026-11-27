@@ -4,6 +4,10 @@ All notable changes to this project are documented here. This project follows [S
 
 ## [Unreleased]
 
+## [1.0.1]
+### Added
+- App icon (also used on the website and in the README).
+
 ## [1.0.0]
 ### Added
 - First public release. Windows/Linux Ctrl shortcuts remapped to their Mac equivalents, Windows text navigation, custom shortcut recording, excluded apps and launch at login.
