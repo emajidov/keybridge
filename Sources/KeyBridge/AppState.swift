@@ -20,6 +20,14 @@ final class AppState: ObservableObject {
     @Published var isEnabled: Bool {
         didSet { defaults.set(isEnabled, forKey: Keys.enabled); updateTap() }
     }
+    /// When false the menu bar icon is hidden; remapping keeps running. Reopening the app shows it again.
+    @Published var showMenuBarIcon: Bool {
+        didSet { defaults.set(showMenuBarIcon, forKey: Keys.showMenuBarIcon) }
+    }
+    /// When true, "Quit" only hides the menu bar icon so shortcuts keep working.
+    @Published var keepRunningAfterQuit: Bool {
+        didSet { defaults.set(keepRunningAfterQuit, forKey: Keys.keepRunningAfterQuit) }
+    }
     @Published private(set) var isTrusted = AXIsProcessTrusted()
     @Published private(set) var tapFailed = false
     @Published private(set) var frontmostApp: NSRunningApplication?
@@ -27,12 +35,15 @@ final class AppState: ObservableObject {
 
     private enum Keys {
         static let rules = "rules", excluded = "excludedApps", enabled = "isEnabled"
+        static let showMenuBarIcon = "showMenuBarIcon", keepRunningAfterQuit = "keepRunningAfterQuit"
     }
 
     private init() {
         rules = Self.load([Rule].self, key: Keys.rules) ?? Defaults.rules
         excludedApps = Self.load([ExcludedApp].self, key: Keys.excluded) ?? Defaults.excludedApps
         isEnabled = defaults.object(forKey: Keys.enabled) as? Bool ?? true
+        showMenuBarIcon = defaults.object(forKey: Keys.showMenuBarIcon) as? Bool ?? true
+        keepRunningAfterQuit = defaults.object(forKey: Keys.keepRunningAfterQuit) as? Bool ?? true
 
         remapper.rules = rules
         remapper.excludedBundleIDs = Set(excludedApps.map(\.bundleID))

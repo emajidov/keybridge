@@ -29,4 +29,10 @@ Project layout:
 3. Make sure `swift build` and `swift test` pass.
 4. Add a line to the "Unreleased" section of [CHANGELOG.md](CHANGELOG.md).
 
+## Releasing
+1. In [CHANGELOG.md](CHANGELOG.md), rename "Unreleased" to the new version (e.g. `## [1.2.0]`) and add a new empty "Unreleased" section.
+2. Commit, then tag and push: `git tag v1.2.0 && git push origin main v1.2.0`.
+
+The release workflow builds `KeyBridge.dmg` and `KeyBridge.zip` and uses that version's CHANGELOG section as the release notes. It fails if the section is missing.
+
 By submitting a contribution, you agree that it is licensed under the [Apache License 2.0](LICENSE).

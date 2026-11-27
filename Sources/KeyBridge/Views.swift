@@ -293,6 +293,14 @@ struct GeneralView: View {
             Section {
                 Toggle("Launch KeyBridge at login",
                        isOn: Binding(get: { state.launchAtLogin }, set: { state.setLaunchAtLogin($0) }))
+                Toggle(isOn: $state.showMenuBarIcon) {
+                    Text("Show menu bar icon")
+                    Text("When hidden, shortcuts keep working. Open KeyBridge from Applications or Spotlight to bring the icon and these settings back.")
+                }
+                Toggle(isOn: $state.keepRunningAfterQuit) {
+                    Text("Keep running after Quit")
+                    Text("Quit KeyBridge only hides the menu bar icon, so your shortcuts keep working. Use Quit Completely below to stop it.")
+                }
                 LabeledContent("Accessibility permission") {
                     if state.isTrusted {
                         Label("Granted", systemImage: "checkmark.circle.fill").foregroundStyle(.green)
@@ -312,7 +320,7 @@ struct GeneralView: View {
             Section {
                 HStack {
                     Spacer()
-                    Button("Quit KeyBridge") { NSApp.terminate(nil) }
+                    Button("Quit Completely") { AppDelegate.shared?.quitCompletely() }
                 }
             }
         }

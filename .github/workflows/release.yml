@@ -19,7 +19,19 @@ jobs:
           /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $GITHUB_RUN_NUMBER" Resources/Info.plist
       - run: swift test
       - run: ./build.sh
+      - name: Extract release notes from CHANGELOG.md
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          awk -v ver="$VERSION" '
+            /^## \[/ { if (found) exit; if (index($0, "## [" ver "]") == 1) { found = 1; next } }
+            found { print }
+          ' CHANGELOG.md > release-notes.md
+          if ! grep -q '[^[:space:]]' release-notes.md; then
+            echo "::error::CHANGELOG.md has no entry for [$VERSION]"
+            exit 1
+          fi
+          printf '\n**Full changelog:** https://github.com/%s/blob/%s/CHANGELOG.md\n' "$GITHUB_REPOSITORY" "$GITHUB_REF_NAME" >> release-notes.md
       - name: Publish GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" build/KeyBridge.dmg build/KeyBridge.zip --title "KeyBridge $GITHUB_REF_NAME" --generate-notes
+        run: gh release create "$GITHUB_REF_NAME" build/KeyBridge.dmg build/KeyBridge.zip --title "KeyBridge $GITHUB_REF_NAME" --notes-file release-notes.md

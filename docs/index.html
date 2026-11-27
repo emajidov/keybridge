@@ -36,7 +36,7 @@
   "operatingSystem": "macOS 13 or later",
   "url": "https://emajidov.github.io/keybridge/",
   "downloadUrl": "https://github.com/emajidov/keybridge/releases/latest/download/KeyBridge.dmg",
-  "softwareVersion": "1.0.0",
+  "softwareVersion": "1.1.0",
   "license": "https://www.apache.org/licenses/LICENSE-2.0",
   "image": "https://emajidov.github.io/keybridge/icon.png",
   "author": { "@type": "Person", "name": "Elgun Majidov", "url": "https://github.com/emajidov" },
@@ -51,7 +51,7 @@
     { "@type": "Question", "name": "How do I use Ctrl+C and Ctrl+V on a Mac?",
       "acceptedAnswer": { "@type": "Answer", "text": "Install KeyBridge and grant it Accessibility access. Ctrl+C, Ctrl+V and other Windows shortcuts will then copy, paste and so on, just like on Windows. Your ⌘ shortcuts keep working too." } },
     { "@type": "Question", "name": "Will Ctrl+C still stop commands in Terminal?",
-      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Terminal, iTerm2, Warp, Ghostty, kitty and Alacritty are excluded by default, so Ctrl+C still interrupts running commands." } },
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Terminal, iTerm2, Warp, Ghostty, kitty, Alacritty, WezTerm, Hyper and Tabby are excluded by default, so Ctrl+C still interrupts running commands." } },
     { "@type": "Question", "name": "Does KeyBridge work with virtual machines and remote desktops?",
       "acceptedAnswer": { "@type": "Answer", "text": "Parallels Desktop, VMware Fusion, UTM and Windows App / Microsoft Remote Desktop are excluded by default, so the guest system receives the real keys." } },
     { "@type": "Question", "name": "How do I make Home and End keys work like Windows on a Mac?",
@@ -106,7 +106,7 @@
       <div class="card"><h3>Keep your muscle memory</h3><p>Switch between a Windows or Linux PC and a Mac every day without retraining your fingers.</p></div>
       <div class="card"><h3>Doesn't break your Mac</h3><p>It only adds shortcuts. ⌘ still works, and terminals still get a real Ctrl+C.</p></div>
       <div class="card"><h3>Private &amp; offline</h3><p>No account, no analytics, no network connections. Your keystrokes stay on your Mac.</p></div>
-      <div class="card"><h3>Fully customizable</h3><p>Record, edit, disable or reorder any shortcut. Exclude any app with one click.</p></div>
+      <div class="card"><h3>Fully customizable</h3><p>Record, edit, disable or reorder any shortcut. Exclude any app with one click, or hide the menu bar icon and let it run in the background.</p></div>
     </div>
   </section>
 
@@ -142,7 +142,7 @@
   <section aria-labelledby="faq">
     <h2 id="faq">FAQ</h2>
     <details><summary>How do I use Ctrl+C and Ctrl+V on a Mac?</summary><p>Install KeyBridge and grant it Accessibility access. Ctrl+C, Ctrl+V and other Windows shortcuts will then copy, paste and so on, just like on Windows. Your ⌘ shortcuts keep working too.</p></details>
-    <details><summary>Will Ctrl+C still stop commands in Terminal?</summary><p>Yes. Terminal, iTerm2, Warp, Ghostty, kitty and Alacritty are excluded by default, so Ctrl+C still interrupts running commands.</p></details>
+    <details><summary>Will Ctrl+C still stop commands in Terminal?</summary><p>Yes. Terminal, iTerm2, Warp, Ghostty, kitty, Alacritty, WezTerm, Hyper and Tabby are excluded by default, so Ctrl+C still interrupts running commands.</p></details>
     <details><summary>Does KeyBridge work with virtual machines and remote desktops?</summary><p>Parallels Desktop, VMware Fusion, UTM and Windows App / Microsoft Remote Desktop are excluded by default, so the guest system receives the real keys.</p></details>
     <details><summary>How do I make Home and End keys work like Windows on a Mac?</summary><p>KeyBridge maps Home and End to the start and end of the line, and Ctrl+Home / Ctrl+End to the start and end of the document. Hold Shift to select text.</p></details>
     <details><summary>Ctrl+← / → doesn't work. Why?</summary><p>macOS uses these keys to switch Spaces. Turn them off in System Settings → Keyboard → Keyboard Shortcuts → Mission Control.</p></details>

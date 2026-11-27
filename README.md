@@ -24,8 +24,9 @@ Your normal ⌘ shortcuts keep working.
 - Windows text navigation: Ctrl+←/→ jumps words, Home/End go to line start/end, Ctrl+Home/End go to document start/end, Ctrl+Backspace/Delete deletes a word.
 - An "Also with Shift" option, so Shift+Home, Ctrl+Shift+→ and similar shortcuts select text like on Windows.
 - Add, edit, disable, reorder or delete any shortcut by recording it.
-- Excluded apps: terminals (Terminal, iTerm2, Warp, Ghostty, kitty, Alacritty), virtual machines and remote desktops are skipped by default. You can toggle the current app from the menu bar.
+- Excluded apps: terminals (Terminal, iTerm2, Warp, Ghostty, kitty, Alacritty, WezTerm, Hyper, Tabby), virtual machines and remote desktops are skipped by default. You can toggle the current app from the menu bar.
 - Launch at login.
+- Runs in the background: hide the menu bar icon, and (on by default) **Quit** only hides the icon so your shortcuts keep working. Open KeyBridge from Applications or Spotlight to bring it back; use **Quit Completely** in Settings to stop it. Turn on **Launch at login** to keep it running after a restart.
 
 ### Default shortcuts
 | Windows / Linux | Mac | Action |
@@ -68,11 +69,13 @@ swift test   # with Command Line Tools only, prefix with SDKROOT=<SDK chosen by 
 ## FAQ
 **How do I use Ctrl+C and Ctrl+V on a Mac?** Install KeyBridge. Ctrl+C and Ctrl+V will then copy and paste like they do on Windows.
 
-**Will Ctrl+C still stop commands in Terminal?** Yes. Terminals are excluded by default.
+**Will Ctrl+C still stop commands in Terminal?** Yes. Common terminals are excluded by default. For other terminals (e.g. the VS Code terminal), add the app under Excluded Apps or use "Disable in <app>" from the menu bar.
 
 **Does it work in VMs or remote desktops (Parallels, VMware, UTM, Windows App)?** These apps are excluded by default, so Windows inside them gets the real keys.
 
 **Some shortcuts don't work (e.g. Ctrl+← / →).** macOS reserves these to switch Spaces. Turn them off in System Settings → Keyboard → Keyboard Shortcuts → Mission Control.
+
+**Do my shortcuts keep working after I quit KeyBridge or restart my Mac?** Yes. With **Keep running after Quit** on (the default), Quit only hides the menu bar icon. Turn on **Launch at login** so KeyBridge starts again after a restart. To stop it completely, use **Quit Completely** in Settings → General.
 
 **Can I swap Ctrl and ⌘ everywhere instead?** Yes. macOS has that built in: System Settings → Keyboard → Keyboard Shortcuts → Modifier Keys.
 
